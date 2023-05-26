@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <ResourceCollection>
+    <Resources>
+      <Resource Name="GameAssets/HotUpdate_dll/HotUpdate" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/Scenes/Game_Scene" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/Scenes/Start_Game" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/UIForm/Meum" LoadType="0" Packed="False" />
+    </Resources>
+    <Assets>
+      <Asset Guid="23bdb95aea1253444a952f9acfdbc2a3" ResourceName="GameAssets/Scenes/Game_Scene" />
+      <Asset Guid="46259edd1c5a1f448a9209abc6767423" ResourceName="GameAssets/HotUpdate_dll/HotUpdate" />
+      <Asset Guid="85e1ee863ed7eb349883eb61cc66f10e" ResourceName="GameAssets/UIForm/Meum" />
+      <Asset Guid="9fc0d4010bbf28b4594072e72b8655ab" ResourceName="GameAssets/Scenes/Start_Game" />
+    </Assets>
+  </ResourceCollection>
+</UnityGameFramework>
