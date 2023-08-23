@@ -2,11 +2,11 @@
 "ForceUpdateGame": false,
 "LatestGameVersion": "0.1.0",
 "InternalGameVersion": 1,
-"InternalResourceVersion": 5,
+"InternalResourceVersion": 8,
 "UpdatePrefixUri": "https://a.unity.cn/client_api/v1/buckets/b70996f7-9a48-4718-b66f-04305e045546/entry_by_path/content/?path=Windows",
-"VersionListLength": 46453,
-"VersionListHashCode": 360499316,
-"VersionListCompressedLength": 14038,
-"VersionListCompressedHashCode": 827529475,
+"VersionListLength": 426,
+"VersionListHashCode": -1387132138,
+"VersionListCompressedLength": 295,
+"VersionListCompressedHashCode":-1267193047,
 "END_OF_JSON":""
 }

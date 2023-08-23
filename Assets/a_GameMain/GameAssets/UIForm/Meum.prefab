@@ -386,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80deb38adecf2834a9fddf57142f8e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 4731231995188924590}
   red: {fileID: 4731231995695115095}
   black: {fileID: 4731231994745558842}
   quit: {fileID: 4731231995727822488}

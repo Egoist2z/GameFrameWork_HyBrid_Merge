@@ -40,7 +40,7 @@ public class ProcedurePreload : ProcedureBase
             time += Time.deltaTime;
             if (time>=2&&GameEntry.HotUpdate.LoadHotAssemblySuccess)
             {
-                ChangeState<ProcedureMeun>(procedureOwner);
+                ChangeState<ProcedureMenu>(procedureOwner);
             }
         }
     }
