@@ -42,7 +42,8 @@ namespace GameFramework
             {
                 List<Type> results = new List<Type>();
                 foreach (System.Reflection.Assembly assembly in s_Assemblies)
-                {
+                {                    
+
                     results.AddRange(assembly.GetTypes());
                 }
 

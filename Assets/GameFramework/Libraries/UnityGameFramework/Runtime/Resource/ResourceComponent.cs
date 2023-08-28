@@ -1513,8 +1513,8 @@ namespace UnityGameFramework.Runtime
             wr.downloadHandler = texDl;
             yield return wr.SendWebRequest();
             int width = 1920;
-            int high = 1080;
-            if (string.IsNullOrEmpty(wr.error) && !wr.isNetworkError)
+            int high = 1080;            
+            if (string.IsNullOrEmpty(wr.error))
             {
                 Texture2D tex = new Texture2D(width, high);                
                 tex = texDl.texture;

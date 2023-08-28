@@ -1,7 +1,11 @@
 {
     "name": "HotUpdate",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:b40c225f2f99f084e943bb9bc823c83d",
+        "GUID:363c5eb08ff8e6a439b85e37b8c20d96",
+        "GUID:1ba846a4dd447e74984f39665f1670ed"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

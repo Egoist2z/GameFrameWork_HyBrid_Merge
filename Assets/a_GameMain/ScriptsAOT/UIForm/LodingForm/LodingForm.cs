@@ -30,8 +30,8 @@ public class LodingForm : MonoBehaviour
     public void SetLodingState(string str)
     {
         if (group.alpha == 0)
-        {
-            group.DOFade(1, 1f);
+        {            
+            group.alpha = 1;
         }
         text.text = str;
     }    

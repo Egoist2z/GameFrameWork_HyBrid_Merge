@@ -2,11 +2,11 @@
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 
-/// <summary>
-/// ui界面组层级辅助器
-/// </summary>
-
-
+namespace UnityGameFramework.Runtime
+{
+    /// <summary>
+    /// ui界面组层级辅助器
+    /// </summary>
     public class UGUIGroupHelper : UIGroupHelperBase
     {
         public const int DepthFactor = 30;
@@ -40,7 +40,7 @@ using UnityGameFramework.Runtime;
             transform.anchorMin = Vector2.zero;
             transform.anchorMax = Vector2.one;
             transform.anchoredPosition = Vector2.zero;
-            transform.sizeDelta = Vector2.zero;                    
+            transform.sizeDelta = Vector2.zero;
         }
     }
-
+}

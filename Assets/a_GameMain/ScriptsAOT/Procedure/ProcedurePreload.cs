@@ -15,33 +15,25 @@ using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
 
+/// <summary>
+/// 游戏预加载流程
+/// </summary>
 public class ProcedurePreload : ProcedureBase
-{
-
-
-    private bool loadOver = false;
-    private float time = 0;
-
+{    
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
-        base.OnEnter(procedureOwner);
-        time = 0;
-        loadOver = false;
+        base.OnEnter(procedureOwner);                
 
-        GameEntry.HotUpdate.InitHotAssembly();
+        GameEntry.HotUpdate.InitHotAssembly();//加载热更dll
         GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("加载资源中");
     }
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
     {
         base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-        if (!loadOver)
+        if (GameEntry.HotUpdate.LoadHotAssemblySuccess)
         {
-            time += Time.deltaTime;
-            if (time>=2&&GameEntry.HotUpdate.LoadHotAssemblySuccess)
-            {
-                ChangeState<ProcedureMenu>(procedureOwner);
-            }
+            ChangeState<ProcedureMenu>(procedureOwner);
         }
     }
 
@@ -49,7 +41,6 @@ public class ProcedurePreload : ProcedureBase
     {
         base.OnLeave(procedureOwner, isShutdown);
         GameEntry.BuiltinData.UnLoadLodingForm();
-
     }
 
 }

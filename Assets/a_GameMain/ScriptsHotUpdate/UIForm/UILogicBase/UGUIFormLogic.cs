@@ -3,13 +3,16 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Events;
-/// <summary>
-/// UGUI使用逻辑类
-/// </summary>
 
+namespace HotUpdate.UI
+{
+
+    /// <summary>
+    /// UGUI使用逻辑类
+    /// </summary>
     public class UGUIFormLogic : UIFormLogic
     {
-        public const int DepthFactor = 10;        
+        public const int DepthFactor = 10;
 
         private CanvasGroup m_CanvasGroup = null;
         private Canvas m_Canvas = null;//当前面板自身的Canvas
@@ -27,7 +30,7 @@ using UnityEngine.Events;
             {
                 return m_Canvas.sortingOrder;
             }
-        }     
+        }
         protected override void OnInit(object userData)
         {
             base.OnInit(userData);
@@ -50,7 +53,7 @@ using UnityEngine.Events;
 
         protected override void OnOpen(object userData)
         {
-            base.OnOpen(userData);           
+            base.OnOpen(userData);
         }
 
         protected override void OnClose(bool isShutdown, object userData)
@@ -87,13 +90,14 @@ using UnityEngine.Events;
         {
             int oldDepth = Depth;
             base.OnDepthChanged(uiGroupDepth, depthInUIGroup);
-            int deltaDepth = UGUIGroupHelper.DepthFactor * uiGroupDepth + DepthFactor * depthInUIGroup - oldDepth + OriginalDepth;
+            //int deltaDepth = UGUIGroupHelper.DepthFactor * uiGroupDepth + DepthFactor * depthInUIGroup - oldDepth + OriginalDepth;
             GetComponentsInChildren(true, m_ChildrenCanvas);
             for (int i = 0; i < m_ChildrenCanvas.Count; i++)
             {
-                m_ChildrenCanvas[i].sortingOrder += deltaDepth;
+              //  m_ChildrenCanvas[i].sortingOrder += deltaDepth;
             }
             m_ChildrenCanvas.Clear();
         }
 
     }
+}

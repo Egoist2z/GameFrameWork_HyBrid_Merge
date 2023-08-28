@@ -4,8 +4,9 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework;
-using HotUpdate;
 
+namespace HotUpdate.UI
+{
     public class MeumForm : UGUIFormLogic
     {
         [SerializeReference]
@@ -24,16 +25,17 @@ using HotUpdate;
         private Image colorPanel;
 
 
-        MonoTest monoScripts;
+        //MonoTest monoScripts;
         protected override void OnInit(object userData)
         {
             base.OnInit(userData);
             red.onClick.AddListener(() => { colorPanel.color = Color.red; colorPanel.gameObject.SetActive(true); });
             black.onClick.AddListener(() => { colorPanel.color = Color.black; colorPanel.gameObject.SetActive(true); });
             quit.onClick.AddListener(() =>
-            { //GameEntry.HotUpdate.RunMethod("PrintLog", "Run",null,null);
-                monoScripts = gameObject.AddComponent<MonoTest>();
-                monoScripts.CallMono();
+            {
+                //GameEntry.HotUpdate.RunMethod("PrintLog", "Run", null, null);
+                //monoScripts = gameObject.AddComponent<MonoTest>();
+                //monoScripts.CallMono();
                 title.text = "Menu";
             });
         }
@@ -47,8 +49,5 @@ using HotUpdate;
         {
             base.OnClose(isShutdown, userData);
         }
-
-
-
-
     }
+}
