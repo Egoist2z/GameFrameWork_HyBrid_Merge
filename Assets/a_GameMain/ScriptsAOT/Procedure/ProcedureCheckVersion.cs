@@ -22,7 +22,7 @@ public class ProcedureCheckVersion : ProcedureBase
 
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
-        base.OnEnter(procedureOwner);
+        base.OnEnter(procedureOwner);        
 
         m_CheckVersionComplete = false;
         m_NeedUpdateVersion = false;
@@ -32,7 +32,7 @@ public class ProcedureCheckVersion : ProcedureBase
         GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
         GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("检查版本信息中...");
         GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);
-
+        Debug.LogError(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()));
     }
 
     protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
@@ -140,23 +140,19 @@ public class ProcedureCheckVersion : ProcedureBase
     }
 
     private string GetPlatformPath()
-    {
+    {        
         switch (Application.platform)
         {
             case RuntimePlatform.WindowsEditor:
             case RuntimePlatform.WindowsPlayer:
                 return "Windows";
-
             case RuntimePlatform.OSXEditor:
             case RuntimePlatform.OSXPlayer:
                 return "MacOS";
-
             case RuntimePlatform.IPhonePlayer:
                 return "IOS";
-
             case RuntimePlatform.Android:
-                return "Android";
-
+                return "Android";                
             default:
                 throw new System.NotSupportedException(Utility.Text.Format("Platform '{0}' is not supported.", Application.platform));
         }

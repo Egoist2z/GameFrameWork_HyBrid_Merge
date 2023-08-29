@@ -5,20 +5,32 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using UnityEngine;
 using GameFramework.Resource;
+using GameFramework.Procedure;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
-using UnityEngine;
-using GameFramework.Procedure;
 
 public class ProcedureSplash : ProcedureBase
 {
+    private bool playOver=false;
+
+    protected override void OnEnter(ProcedureOwner procedureOwner)
+    {
+        base.OnEnter(procedureOwner);
+        playOver = false;
+        // TODO: 这里播放一个 Splash 动画        
+        GameEntry.BuiltinData.InitSplash(()=> { playOver = true;});
+     }
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
     {
-        base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+        base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);        
+        if (!playOver)
+        {
+            return;
+        }
 
-        // TODO: 这里可以播放一个 Splash 动画
-        // ...
+        GameEntry.BuiltinData.InitLodingForm();
 
         if (GameEntry.Base.EditorResourceMode)
         {
@@ -38,6 +50,6 @@ public class ProcedureSplash : ProcedureBase
             Log.Info("Updatable resource mode detected.");
             ChangeState<ProcedureCheckVersion>(procedureOwner);
         }
-    }
+    }   
 }
 

@@ -78,6 +78,16 @@ namespace UnityGameFramework.Runtime
         [SerializeField]
         private UIGroup[] m_UIGroups = null;
 
+
+        /// <summary>
+        /// 返回ui根节点
+        /// </summary>
+        public Transform UIInstanceRoot 
+        {
+            get=>m_InstanceRoot;
+        }
+
+
         /// <summary>
         /// 获取界面组数量。
         /// </summary>

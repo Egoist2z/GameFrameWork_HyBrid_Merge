@@ -23,20 +23,17 @@ namespace HotUpdate.UI
 
         [SerializeReference]
         private Image colorPanel;
-
-
-        //MonoTest monoScripts;
+        
         protected override void OnInit(object userData)
         {
             base.OnInit(userData);
-            red.onClick.AddListener(() => { colorPanel.color = Color.red; colorPanel.gameObject.SetActive(true); });
-            black.onClick.AddListener(() => { colorPanel.color = Color.black; colorPanel.gameObject.SetActive(true); });
+            red.onClick.AddListener(() => { colorPanel.color = Color.blue; colorPanel.gameObject.SetActive(true); });
+            black.onClick.AddListener(() => { colorPanel.color = Color.green; colorPanel.gameObject.SetActive(true); });
             quit.onClick.AddListener(() =>
             {
-                //GameEntry.HotUpdate.RunMethod("PrintLog", "Run", null, null);
-                //monoScripts = gameObject.AddComponent<MonoTest>();
-                //monoScripts.CallMono();
-                title.text = "Menu";
+                GameEntry.HotUpdate.RunMethod("ReflectTest","Print", null, null);
+                gameObject.AddComponent<TestAddBehaviour>();
+                title.text = "HotUpdate";
             });
         }
 

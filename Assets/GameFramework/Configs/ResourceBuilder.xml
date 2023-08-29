@@ -2,15 +2,15 @@
 <UnityGameFramework>
   <ResourceBuilder>
     <Settings>
-      <InternalResourceVersion>8</InternalResourceVersion>
-      <Platforms>1</Platforms>
+      <InternalResourceVersion>12</InternalResourceVersion>
+      <Platforms>32</Platforms>
       <AssetBundleCompression>1</AssetBundleCompression>
       <CompressionHelperTypeName>UnityGameFramework.Runtime.DefaultCompressionHelper</CompressionHelperTypeName>
       <AdditionalCompressionSelected>True</AdditionalCompressionSelected>
       <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>
       <BuildEventHandlerTypeName>
       </BuildEventHandlerTypeName>
-      <OutputDirectory>C:/Users/2z/Desktop/测试打包资源</OutputDirectory>
+      <OutputDirectory>C:/Users/2z/Desktop/热更测试资源</OutputDirectory>
       <OutputPackageSelected>False</OutputPackageSelected>
       <OutputFullSelected>True</OutputFullSelected>
       <OutputPackedSelected>False</OutputPackedSelected>
