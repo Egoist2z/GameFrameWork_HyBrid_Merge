@@ -14,12 +14,7 @@ public class BuildInfo
     /// 游戏版本
     /// </summary>
     public string GameVersion;
-
-    /// <summary>
-    /// 内部版本
-    /// </summary>
-    public int InternalGameVersion;
-
+    
     /// <summary>
     /// 检测资源文件地址
     /// </summary>
@@ -29,9 +24,7 @@ public class BuildInfo
     /// 强制更新地址
     /// </summary>
     public string WindowsAppUrl;
-
-    public string MacOSAppUrl;
-
+    
     public string IOSAppUrl;
 
     public string AndroidAppUrl;

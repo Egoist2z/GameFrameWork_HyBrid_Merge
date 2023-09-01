@@ -14,7 +14,7 @@ public class GameSplashForm : MonoBehaviour
     private CanvasGroup group;
 
     public const string title= "Demo_1 ";
-
+    
     private void Start()
     {
         point.fillAmount = 0;
@@ -28,7 +28,9 @@ public class GameSplashForm : MonoBehaviour
     }
     
     private IEnumerator Splash(Action action) 
-    {        
+    {
+        transform.SetParent(point.transform);
+        transform.localEulerAngles = Vector3.forward;
         while (point.fillAmount<1)
         {
             point.fillAmount += 0.05f;

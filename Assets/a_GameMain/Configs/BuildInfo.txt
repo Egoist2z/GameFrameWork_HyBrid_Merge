@@ -1,6 +1,5 @@
 ﻿{
-  "GameVersion": "0.1.0",
-  "InternalGameVersion": 1,
+  "GameVersion": "0.1.0",  
   "CheckVersionUrl": "https://a.unity.cn/client_api/v1/buckets/b70996f7-9a48-4718-b66f-04305e045546/entry_by_path/content/?path={0}Version.txt",
   "WindowsAppUrl": "",
   "MacOSAppUrl": "",

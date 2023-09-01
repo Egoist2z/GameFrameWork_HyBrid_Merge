@@ -1,12 +1,13 @@
 {
-"ForceUpdateGame": false,
-"LatestGameVersion": "0.1.0",
-"InternalGameVersion": 1,
+"InternalGameVersion": "0.1.0",
 "InternalResourceVersion": 12,
 "UpdatePrefixUri": "https://a.unity.cn/client_api/v1/buckets/b70996f7-9a48-4718-b66f-04305e045546/entry_by_path/content/?path=Android",
 "VersionListLength": 426,
 "VersionListHashCode": 838934411,
-"VersionListZipLength": 286,
-"VersionListZipHashCode": -189546133,
+"VersionListCompressedLength": 286,
+"VersionListCompressedHashCode": -189546133,
 "END_OF_JSON":""
 }
+
+
+

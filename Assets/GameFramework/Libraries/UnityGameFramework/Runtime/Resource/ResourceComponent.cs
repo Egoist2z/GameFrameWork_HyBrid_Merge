@@ -722,6 +722,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="resourceMode">资源模式。</param>
         public void SetResourceMode(ResourceMode resourceMode)
         {
+            Debug.LogError(resourceMode);
             m_ResourceManager.SetResourceMode(resourceMode);
             switch (resourceMode)
             {
@@ -1498,34 +1499,6 @@ namespace UnityGameFramework.Runtime
         private void OnResourceUpdateAllComplete(object sender, GameFramework.Resource.ResourceUpdateAllCompleteEventArgs e)
         {
             m_EventComponent.Fire(this, ResourceUpdateAllCompleteEventArgs.Create(e));
-        }
-
-        #region 加载网络图片的拓展
-        public void LoadWebSpriteByUrl(string url, Action<Sprite> action)
-        {
-            StartCoroutine(LoadWebSprite(url, action));
-        }
-
-        IEnumerator LoadWebSprite(string url, Action<Sprite> action)
-        {
-            UnityWebRequest wr = new UnityWebRequest(url);
-            DownloadHandlerTexture texDl = new DownloadHandlerTexture(true);
-            wr.downloadHandler = texDl;
-            yield return wr.SendWebRequest();
-            int width = 1920;
-            int high = 1080;            
-            if (string.IsNullOrEmpty(wr.error))
-            {
-                Texture2D tex = new Texture2D(width, high);                
-                tex = texDl.texture;
-                Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-                action.Invoke(sprite);
-            }
-            else
-                action.Invoke(null);
-        }
-        #endregion
-
-
+        }      
     }
 }

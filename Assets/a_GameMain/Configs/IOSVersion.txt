@@ -6,7 +6,7 @@
 "UpdatePrefixUri": "https://a.unity.cn/client_api/v1/buckets/b70996f7-9a48-4718-b66f-04305e045546/entry_by_path/content/?path=IOS",
 "VersionListLength": 7158,
 "VersionListHashCode": 1950701509,
-"VersionListZipLength": 2648,
-"VersionListZipHashCode": 915433963,
+"VersionListCompressedLength": 2648,
+"VersionListCompressedHashCode": 915433963,
 "END_OF_JSON":""
 }

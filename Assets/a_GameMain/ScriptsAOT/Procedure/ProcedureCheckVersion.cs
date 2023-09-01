@@ -29,17 +29,15 @@ public class ProcedureCheckVersion : ProcedureBase
         m_VersionInfo = null;
 
         GameEntry.Event.Subscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
-        GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
+        GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);        
         GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("检查版本信息中...");
-        GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);
-        Debug.LogError(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()));
+        GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);        
     }
 
     protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
     {
-        GameEntry.Event.Unsubscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
+        GameEntry.Event.Unsubscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);        
         GameEntry.Event.Unsubscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
-
         base.OnLeave(procedureOwner, isShutdown);
     }
 
@@ -103,9 +101,10 @@ public class ProcedureCheckVersion : ProcedureBase
             return;
         }
 
-        Log.Info("Latest game version is '{0} ({1})', local game version is '{2} ({3})'.", m_VersionInfo.LatestGameVersion, m_VersionInfo.InternalGameVersion.ToString(), Version.GameVersion, Version.InternalGameVersion.ToString());
+        Log.Info("Latest game version is '{0}', local game version is '{1}'", m_VersionInfo.InternalGameVersion.ToString(), Version.GameVersion);
 
-        if (m_VersionInfo.ForceUpdateGame)
+        //当前应用版本低于 CDN配置版本 需要更新整个应用
+        if (GameVersionToIntValue(Version.GameVersion)< GameVersionToIntValue(m_VersionInfo.InternalGameVersion))
         {
             // 需要强制更新游戏应用
             //GameEntry.UI.OpenDialog(new DialogParams
@@ -140,7 +139,12 @@ public class ProcedureCheckVersion : ProcedureBase
     }
 
     private string GetPlatformPath()
-    {        
+    {
+        //#if UNITY_WII || UNITY_EDITOR_WIN
+        //        return "Windows";
+        //#elif UNITY_ANDROID        
+        //#elif UNITY_IOS
+        return "Android";
         switch (Application.platform)
         {
             case RuntimePlatform.WindowsEditor:
@@ -152,9 +156,21 @@ public class ProcedureCheckVersion : ProcedureBase
             case RuntimePlatform.IPhonePlayer:
                 return "IOS";
             case RuntimePlatform.Android:
-                return "Android";                
+                return "Android";
             default:
                 throw new System.NotSupportedException(Utility.Text.Format("Platform '{0}' is not supported.", Application.platform));
         }
+    }
+
+
+    private int GameVersionToIntValue(string gameVersion)
+    {
+        var list = gameVersion.Split('.');
+        int number = 0;
+        foreach (var item in list)
+        {
+            number += int.Parse(item);
+        }
+        return number;
     }
 }

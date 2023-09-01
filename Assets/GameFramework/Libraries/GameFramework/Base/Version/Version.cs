@@ -43,21 +43,21 @@ namespace GameFramework
             }
         }
 
-        /// <summary>
-        /// 获取内部游戏版本号。
-        /// </summary>
-        public static int InternalGameVersion
-        {
-            get
-            {
-                if (s_VersionHelper == null)
-                {
-                    return 0;
-                }
+        ///// <summary>
+        ///// 获取内部游戏版本号。
+        ///// </summary>
+        //public static int InternalGameVersion
+        //{
+        //    get
+        //    {
+        //        if (s_VersionHelper == null)
+        //        {
+        //            return 0;
+        //        }
 
-                return s_VersionHelper.InternalGameVersion;
-            }
-        }
+        //        return s_VersionHelper.InternalGameVersion;
+        //    }
+        //}
 
         /// <summary>
         /// 设置版本号辅助器。
