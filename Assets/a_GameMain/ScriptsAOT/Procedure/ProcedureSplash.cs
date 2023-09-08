@@ -18,8 +18,14 @@ public class ProcedureSplash : ProcedureBase
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);
-        playOver = false;
+        if (GameEntry.Base.EditorResourceMode)
+        {
+            playOver = true;
+            return;
+        }
+
         // TODO: 这里播放一个 Splash 动画        
+        playOver = false;
         GameEntry.BuiltinData.InitSplash(()=> { playOver = true;});
      }
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -47,7 +53,7 @@ public class ProcedureSplash : ProcedureBase
         else
         {
             // 可更新模式
-            Log.Info("Updatable resource mode detected.");
+            Log.Info("Updatable resource mode detected.");            
             ChangeState<ProcedureCheckVersion>(procedureOwner);
         }
     }   

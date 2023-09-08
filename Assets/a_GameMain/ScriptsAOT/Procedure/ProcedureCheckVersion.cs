@@ -22,21 +22,21 @@ public class ProcedureCheckVersion : ProcedureBase
 
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
-        base.OnEnter(procedureOwner);        
+        base.OnEnter(procedureOwner);
 
         m_CheckVersionComplete = false;
         m_NeedUpdateVersion = false;
         m_VersionInfo = null;
 
         GameEntry.Event.Subscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
-        GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);        
+        GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
         GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("检查版本信息中...");
-        GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);        
+        GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);
     }
 
     protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
     {
-        GameEntry.Event.Unsubscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);        
+        GameEntry.Event.Unsubscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
         GameEntry.Event.Unsubscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
         base.OnLeave(procedureOwner, isShutdown);
     }
@@ -92,8 +92,7 @@ public class ProcedureCheckVersion : ProcedureBase
 
         // 解析版本信息
         byte[] versionInfoBytes = ne.GetWebResponseBytes();
-        string versionInfoString = Utility.Converter.GetString(versionInfoBytes);        
-        Debug.LogError(versionInfoString);
+        string versionInfoString = Utility.Converter.GetString(versionInfoBytes);
         m_VersionInfo = Utility.Json.ToObject<VersionInfo>(versionInfoString);
         if (m_VersionInfo == null)
         {
@@ -103,8 +102,9 @@ public class ProcedureCheckVersion : ProcedureBase
 
         Log.Info("Latest game version is '{0}', local game version is '{1}'", m_VersionInfo.InternalGameVersion.ToString(), Version.GameVersion);
 
+        
         //当前应用版本低于 CDN配置版本 需要更新整个应用
-        if (GameVersionToIntValue(Version.GameVersion)< GameVersionToIntValue(m_VersionInfo.InternalGameVersion))
+        if (GameVersionToIntValue(Version.GameVersion) < GameVersionToIntValue(m_VersionInfo.InternalGameVersion))
         {
             // 需要强制更新游戏应用
             //GameEntry.UI.OpenDialog(new DialogParams
@@ -140,26 +140,29 @@ public class ProcedureCheckVersion : ProcedureBase
 
     private string GetPlatformPath()
     {
-        //#if UNITY_WII || UNITY_EDITOR_WIN
-        //        return "Windows";
-        //#elif UNITY_ANDROID        
-        //#elif UNITY_IOS
+#if UNITY_WII
+        return "Windows";
+#elif UNITY_ANDROID
         return "Android";
-        switch (Application.platform)
-        {
-            case RuntimePlatform.WindowsEditor:
-            case RuntimePlatform.WindowsPlayer:
-                return "Windows";
-            case RuntimePlatform.OSXEditor:
-            case RuntimePlatform.OSXPlayer:
-                return "MacOS";
-            case RuntimePlatform.IPhonePlayer:
-                return "IOS";
-            case RuntimePlatform.Android:
-                return "Android";
-            default:
-                throw new System.NotSupportedException(Utility.Text.Format("Platform '{0}' is not supported.", Application.platform));
-        }
+#elif UNITY_IOS
+          return "IOS";
+#endif
+        //return "Android";
+        //switch (Application.platform)
+        //{
+        //    case RuntimePlatform.WindowsEditor:
+        //    case RuntimePlatform.WindowsPlayer:
+        //        return "Windows";
+        //    case RuntimePlatform.OSXEditor:
+        //    case RuntimePlatform.OSXPlayer:
+        //        return "MacOS";
+        //    case RuntimePlatform.IPhonePlayer:
+        //        return "IOS";
+        //    case RuntimePlatform.Android:
+        //        return "Android";
+        //    default:
+        //        throw new System.NotSupportedException(Utility.Text.Format("Platform '{0}' is not supported.", Application.platform));
+        //}
     }
 
 

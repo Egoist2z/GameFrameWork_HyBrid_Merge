@@ -19,7 +19,14 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 /// 游戏预加载流程
 /// </summary>
 public class ProcedurePreload : ProcedureBase
-{    
+{
+
+    public static string[] DataTableNames =new string[]
+    {
+
+
+    };
+
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);                

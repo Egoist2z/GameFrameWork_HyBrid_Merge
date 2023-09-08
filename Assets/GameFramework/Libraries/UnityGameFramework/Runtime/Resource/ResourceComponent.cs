@@ -721,8 +721,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="resourceMode">资源模式。</param>
         public void SetResourceMode(ResourceMode resourceMode)
-        {
-            Debug.LogError(resourceMode);
+        {            
             m_ResourceManager.SetResourceMode(resourceMode);
             switch (resourceMode)
             {

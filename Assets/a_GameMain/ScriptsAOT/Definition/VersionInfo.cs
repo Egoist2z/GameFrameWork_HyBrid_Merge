@@ -5,7 +5,6 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-
     public class VersionInfo
     {    
     /// <summary>

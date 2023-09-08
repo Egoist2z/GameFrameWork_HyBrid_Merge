@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BuildInfoTextAsset: {fileID: 4900000, guid: dc230ed7ee2f82846b8b96a9610a519d, type: 3}
+  m_DefaultDictionaryTextAsset: {fileID: 4900000, guid: c1428862587e3a74391f6fb00f3b5930, type: 3}
 --- !u!4 &1824480298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 430602, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
@@ -605,7 +606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11402440, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: m_ActiveWindow
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11405216, guid: adb3eb1c35fcff14f89fba7b05c9d71c, type: 3}
       propertyPath: m_EntranceProcedureTypeName
