@@ -5,12 +5,12 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.Procedure;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
-using AOT;
 using System.Collections.Generic;
 using UnityGameFramework.Runtime;
+using GameFramework.Procedure;
 using GameFramework.Event;
+using AOT;
 
 /// <summary>
 /// 游戏预加载流程
@@ -72,7 +72,7 @@ public class ProcedurePreload : ProcedureBase
 
     private void OnLoadDataTableSuccess(object sender, GameEventArgs e)
     {
-        LoadDataTableSuccessEventArgs ne = (LoadDataTableSuccessEventArgs)e;        
+        LoadDataTableSuccessEventArgs ne = (LoadDataTableSuccessEventArgs)e;
         m_LoadedFlag[ne.DataTableAssetName] = true;        
         Log.Info("Load data table '{0}' OK.", ne.DataTableAssetName);
     }
