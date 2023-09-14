@@ -42,7 +42,7 @@ public class ProcedureSplash : ProcedureBase
         {
             // 编辑器模式
             Log.Info("Editor resource mode detected.");
-            ChangeState<ProcedurePreload>(procedureOwner);
+            ChangeState<ProcedureLoadHotUpdateDll>(procedureOwner);
         }
         else if (GameEntry.Resource.ResourceMode == ResourceMode.Package)
         {

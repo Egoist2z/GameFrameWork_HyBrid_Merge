@@ -18,7 +18,7 @@ namespace AOT
 
         public static string GetDataTableAsset(string assetName, bool fromBytes = true)
         {
-            return Utility.Text.Format("Assets/a_GameMain/DataTables/{0}.{1}", assetName, fromBytes ? "bytes" : "txt");
+            return Utility.Text.Format("Assets/a_GameMain/GameAssets/DataTables/{0}.{1}", assetName, fromBytes ? "bytes" : "txt");
         }
 
         //public static string GetDictionaryAsset(string assetName, bool fromBytes = false)
@@ -53,7 +53,7 @@ namespace AOT
 
         public static string GetUIFormAsset(string assetName)
         {
-            return Utility.Text.Format("Assets/a_GameMain/UIForms/{0}.prefab", assetName);
+            return Utility.Text.Format("Assets/a_GameMain/GameAssets/UIForms/{0}.prefab", assetName);
         }
 
         //public static string GetUISoundAsset(string assetName)

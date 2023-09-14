@@ -11,9 +11,7 @@ public class ProcedureMenu : ProcedureBase
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);
-        GameEntry.UI.OpenUIForm("Assets/a_GameMain/GameAssets/UIForm/MenuForm.prefab", "Meum");
-        
-        
+        StartGame();                
     }
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -26,4 +24,8 @@ public class ProcedureMenu : ProcedureBase
         base.OnLeave(procedureOwner, isShutdown);
     }
 
+    private void StartGame() 
+    {        
+        GameEntry.HotUpdate.RunMethod("StartGame", "OpenMenuForm");        
+    }    
 }

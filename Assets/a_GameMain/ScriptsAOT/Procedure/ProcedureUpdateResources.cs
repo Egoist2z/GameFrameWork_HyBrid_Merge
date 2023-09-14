@@ -72,7 +72,7 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
                 return;
             }
 
-            ChangeState<ProcedurePreload>(procedureOwner);
+            ChangeState<ProcedureLoadHotUpdateDll>(procedureOwner);
         }
 
         private void StartUpdateResources(object userData)

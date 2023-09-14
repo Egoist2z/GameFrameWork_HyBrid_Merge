@@ -5,21 +5,19 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework;
-using GameFramework.Event;
 using GameFramework.Procedure;
-using GameFramework.Resource;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
-
+using AOT;
+using System.Collections.Generic;
+using UnityGameFramework.Runtime;
+using GameFramework.Event;
 
 /// <summary>
 /// 游戏预加载流程
 /// </summary>
 public class ProcedurePreload : ProcedureBase
 {
+    private Dictionary<string, bool> m_LoadedFlag = new Dictionary<string, bool>();
 
     public static string[] DataTableNames =new string[]
     {
@@ -29,25 +27,62 @@ public class ProcedurePreload : ProcedureBase
 
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
-        base.OnEnter(procedureOwner);        
-        GameEntry.HotUpdate.InitHotAssembly();//加载热更dll
-        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("加载资源中");
+        base.OnEnter(procedureOwner);
+        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("加载游戏数据");
+        m_LoadedFlag.Clear();        
+                
+        GameEntry.Event.Subscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);
+        GameEntry.Event.Subscribe(LoadDataTableFailureEventArgs.EventId, OnLoadDataTableFailure);        
+        ///加载游戏中表格数据
+        foreach (var item in DataTableNames)
+        {
+            LoadDataTable(item);
+        }        
     }
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
     {
         base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-        if (GameEntry.HotUpdate.LoadHotAssemblySuccess)
+        foreach (var item in m_LoadedFlag)
         {
-            ChangeState<ProcedureMenu>(procedureOwner);
+            if (!item.Value)
+            {
+                return;
+            }
         }
+        ChangeState<ProcedureMenu>(procedureOwner);        
     }
 
     protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
     {
-        base.OnLeave(procedureOwner, isShutdown);
+        GameEntry.Event.Unsubscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);
+        GameEntry.Event.Unsubscribe(LoadDataTableFailureEventArgs.EventId, OnLoadDataTableFailure);
         GameEntry.BuiltinData.UnLoadLodingForm();
+        base.OnLeave(procedureOwner, isShutdown);
     }
+
+
+    #region 加载游戏数据表    
+    private void LoadDataTable(string dataTableName)
+    {
+        GameEntry.HotUpdate.RunMethod("StartGame", "LoadDataTable",new object[] { dataTableName });
+        var dataTableAssetName = AssetUtility.GetDataTableAsset(dataTableName, false);
+        m_LoadedFlag.Add(dataTableAssetName, false);
+    }
+
+    private void OnLoadDataTableSuccess(object sender, GameEventArgs e)
+    {
+        LoadDataTableSuccessEventArgs ne = (LoadDataTableSuccessEventArgs)e;        
+        m_LoadedFlag[ne.DataTableAssetName] = true;        
+        Log.Info("Load data table '{0}' OK.", ne.DataTableAssetName);
+    }
+
+    private void OnLoadDataTableFailure(object sender, GameEventArgs e)
+    {
+        LoadDataTableFailureEventArgs ne = (LoadDataTableFailureEventArgs)e;        
+        Log.Error("Can not load data table '{0}' from '{1}' with error message '{2}'.", ne.DataTableAssetName, ne.DataTableAssetName, ne.ErrorMessage);
+    }
+    #endregion
 
 }
 

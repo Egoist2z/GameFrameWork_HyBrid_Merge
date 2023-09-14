@@ -7,7 +7,7 @@ using GameFramework.Resource;
 
 public class HotUpdateComponent : GameFrameworkComponent
 {
-    private Assembly hotAssembly;
+    public Assembly hotAssembly;
 
     private bool loadHotAssemblySuccess;
 
@@ -48,12 +48,18 @@ public class HotUpdateComponent : GameFrameworkComponent
         }
     }
 
-    public void RunMethod(string type, string method, object obj = null, object[] parameter = null)
+    /// <summary>
+    /// 调用hotupdateDLL
+    /// </summary>
+    /// <param name="type">类名</param>
+    /// <param name="method">方法名</param>
+    /// <param name="parameter">参数列表</param>
+    public void RunMethod(string type, string method, object[] parameter = null)
     {
-        Type tp = hotAssembly.GetType(type);
-        tp.GetMethod(method).Invoke(obj, parameter);
+        Type tp = hotAssembly.GetType(type);        
+        tp.GetMethod(method).Invoke(tp, parameter);
     }
-
+    
     public void LoadHotAssemblySuccessCallback(string assetName, object asset, float duration, object userData)
     {        
         TextAsset textAsset = (TextAsset) asset;
