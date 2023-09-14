@@ -20,11 +20,11 @@ namespace DataTableTools
         /// <summary>
         /// 表格资源路径
         /// </summary>
-        private const string GodGeneral_DataTablePath = "Assets/a_GameMain/GameAssets/DataTabels";
+        private const string GodGeneral_DataTablePath = "Assets/a_GameMain/GameAssets/DataTables";
         /// <summary>
         /// 导出C#类路径
         /// </summary>
-        private const string GodGeneral_CSharpCodePath = "Assets/a_GameMain/ScriptsAOT/DataTabels";      
+        private const string GodGeneral_CSharpCodePath = "Assets/a_GameMain/ScriptsHotUpdate/DataTables";      
         
         [MenuItem("Game Framework/DataTablesTools/导出本地配置表")]
         private static void GenerateDataTables()

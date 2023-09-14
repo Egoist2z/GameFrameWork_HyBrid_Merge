@@ -19,7 +19,6 @@ public class ProcedureCheckVersion : ProcedureBase
     private bool m_NeedUpdateVersion = false;
     private VersionInfo m_VersionInfo = null;
 
-
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);
@@ -64,21 +63,21 @@ public class ProcedureCheckVersion : ProcedureBase
         }
     }
 
-    private void GotoUpdateApp(object userData)
+    private void GotoUpdateApp()
     {
         string url = null;
-#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+#if UNITY_EDITOR
+        return;
+#elif UNITY_WIN
         url = GameEntry.BuiltinData.BuildInfo.WindowsAppUrl;
-#elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-            url = GameEntry.BuiltinData.BuildInfo.MacOSAppUrl;
 #elif UNITY_IOS
             url = GameEntry.BuiltinData.BuildInfo.IOSAppUrl;
 #elif UNITY_ANDROID
-            url = GameEntry.BuiltinData.BuildInfo.AndroidAppUrl;
+        url = GameEntry.BuiltinData.BuildInfo.AndroidAppUrl;
 #endif
         if (!string.IsNullOrEmpty(url))
         {
-            Application.OpenURL(url);
+            Application.OpenURL(url);            
         }
     }
 
@@ -107,17 +106,14 @@ public class ProcedureCheckVersion : ProcedureBase
         if (GameVersionToIntValue(Version.GameVersion) < GameVersionToIntValue(m_VersionInfo.InternalGameVersion))
         {
             // 需要强制更新游戏应用
-            //GameEntry.UI.OpenDialog(new DialogParams
-            //{
-            //    Mode = 2,
-            //    Title = GameEntry.Localization.GetString("ForceUpdate.Title"),
-            //    Message = GameEntry.Localization.GetString("ForceUpdate.Message"),
-            //    ConfirmText = GameEntry.Localization.GetString("ForceUpdate.UpdateButton"),
-            //    OnClickConfirm = GotoUpdateApp,
-            //    CancelText = GameEntry.Localization.GetString("ForceUpdate.QuitButton"),
-            //    OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
-            //});
-
+            var data = new AOT_UIForm.GotoUpdateFormData()
+            {
+                title = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormTitle),
+                content = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormContents),
+                quit = () => { Application.Quit(); },
+                update = GotoUpdateApp,
+            };
+            GameEntry.BuiltinData.OpenGotoUpdateForm(data);                    
             return;
         }
 

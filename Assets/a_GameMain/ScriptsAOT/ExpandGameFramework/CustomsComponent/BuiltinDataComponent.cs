@@ -9,7 +9,7 @@ using GameFramework;
 using System;
 using UnityEngine;
 using UnityGameFramework.Runtime;
-
+using AOT_UIForm;
 public class BuiltinDataComponent : GameFrameworkComponent
 {
     [SerializeField]
@@ -55,12 +55,29 @@ public class BuiltinDataComponent : GameFrameworkComponent
         }
     }
 
-    public void InitLodingForm()
+    public void InitDefaultDictionary()
+    {
+        if (m_DefaultDictionaryTextAsset == null || string.IsNullOrEmpty(m_DefaultDictionaryTextAsset.text))
+        {
+            Log.Info("Default dictionary can not be found or empty.");
+            return;
+        }
+
+        if (!GameEntry.Localization.ParseData(m_DefaultDictionaryTextAsset.text))
+        {
+            Log.Warning("Parse default dictionary failure.");
+            return;
+        }
+    }
+
+
+
+    public void OpenLodingForm()
     {
         GameObject form = Resources.Load<GameObject>("LodingForm");
         if (form == null)
         {
-            Debug.LogError("LodingForm Lost");
+            Log.Error("LodingForm Lost");
             return;
         }
         m_lodingForm =GameObject.Instantiate(form, GameEntry.UI.UIInstanceRoot).GetComponent<LodingForm>();        
@@ -76,12 +93,12 @@ public class BuiltinDataComponent : GameFrameworkComponent
         m_lodingForm = null;
     }
 
-    public void InitSplash(Action action)
+    public void OpenSplash(Action action)
     {
         GameObject form = Resources.Load<GameObject>("GameSplashForm");
         if (form==null)
         {
-            Debug.LogError("GameSplashForm Lost");
+            Log.Error("GameSplashForm Lost");
             return;
         }
         form = GameObject.Instantiate(form, GameEntry.UI.UIInstanceRoot);
@@ -91,18 +108,19 @@ public class BuiltinDataComponent : GameFrameworkComponent
     }
 
 
-    public void InitDefaultDictionary()
+    public void OpenGotoUpdateForm(GotoUpdateFormData data) 
     {
-        if (m_DefaultDictionaryTextAsset == null || string.IsNullOrEmpty(m_DefaultDictionaryTextAsset.text))
+        GameObject form = Resources.Load<GameObject>("GotoUpdateForm");
+        if (form==null)
         {
-            Log.Info("Default dictionary can not be found or empty.");
+            Log.Error("GameSplashForm Lost");
             return;
         }
-
-        if (!GameEntry.Localization.ParseData(m_DefaultDictionaryTextAsset.text))
-        {            
-            Log.Warning("Parse default dictionary failure.");
-            return;
-        }
+        form = GameObject.Instantiate(form, GameEntry.UI.UIInstanceRoot);
+        form.transform.localPosition = Vector3.zero;
+        form.transform.localScale = Vector3.one;
+        form.GetComponent<GotoUpdateForm>().InitForm(data);
     }
+
+
 }

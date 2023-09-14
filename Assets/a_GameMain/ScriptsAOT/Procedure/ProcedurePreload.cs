@@ -23,14 +23,13 @@ public class ProcedurePreload : ProcedureBase
 
     public static string[] DataTableNames =new string[]
     {
-
+        "UIFormBaseInfo",
 
     };
 
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
-        base.OnEnter(procedureOwner);                
-
+        base.OnEnter(procedureOwner);        
         GameEntry.HotUpdate.InitHotAssembly();//加载热更dll
         GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("加载资源中");
     }

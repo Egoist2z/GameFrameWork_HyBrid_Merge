@@ -36,7 +36,7 @@ namespace DataTableTools
         private DataTableCodeGenerator m_CodeGenerator;
 
         public DataTableProcessor(string dataTableFileName, Encoding encoding, int nameRow, int typeRow, int? defaultValueRow, int? commentRow, int contentStartRow, int idColumn)
-        {
+        {            
             if (string.IsNullOrEmpty(dataTableFileName))
             {
                 throw new GameFrameworkException("Data table file name is invalid.");
@@ -204,6 +204,7 @@ namespace DataTableTools
             }
         }
 
+        
         public int ContentStartRow
         {
             get

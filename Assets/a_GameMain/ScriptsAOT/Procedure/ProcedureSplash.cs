@@ -26,7 +26,7 @@ public class ProcedureSplash : ProcedureBase
 
         // TODO: 这里播放一个 Splash 动画        
         playOver = false;
-        GameEntry.BuiltinData.InitSplash(()=> { playOver = true;});
+        GameEntry.BuiltinData.OpenSplash(()=> { playOver = true;});
      }
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
     {
@@ -36,7 +36,7 @@ public class ProcedureSplash : ProcedureBase
             return;
         }
 
-        GameEntry.BuiltinData.InitLodingForm();
+        GameEntry.BuiltinData.OpenLodingForm();
 
         if (GameEntry.Base.EditorResourceMode)
         {
