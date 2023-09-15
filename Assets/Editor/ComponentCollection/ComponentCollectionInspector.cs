@@ -615,7 +615,7 @@ namespace GameExtension.Editor
                 Debug.LogError("ComponentsCodeTemplate is null, Please check 'ComponentCollectionSettings' asset.");
                 return;
             }
-
+          
             string codeFileName = string.Format("{0}/{1}.Components.cs", m_CodeSavePath.stringValue, m_ClassName.stringValue);
             if (!CheckGenerateFile(codeFileName))
             {
@@ -624,6 +624,12 @@ namespace GameExtension.Editor
 
             RemoveNullComponent();
             SyncSerializeComponents();
+
+            var list = AssetDatabase.FindAssets(string.Format("t:Script {0}.Components", m_ClassName.stringValue));           
+            if (list != null && list.Length > 0)
+            {
+                codeFileName = AssetDatabase.GUIDToAssetPath(list[0]);            
+            }
 
             Dictionary<string, string> fieldTypeDict = new Dictionary<string, string>();
             for (int i = 0; i < m_FieldNames.arraySize; i++)
