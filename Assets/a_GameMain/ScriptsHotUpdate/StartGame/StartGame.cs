@@ -9,9 +9,9 @@ public static class StartGame
     /// 打开游戏登入 or 菜单界面
     /// </summary>
     public static void OpenMenuForm() 
-    {        
-        GameEntry.UI.OpenUIForm(FormId.MenuForm);
-        Log.Debug("Open Menu Form");
+    {
+        GameEntry.UI.InitGroups();        
+        GameEntry.UI.OpenUIForm(FormId.MenuForm);        
     }    
 
     /// <summary>
@@ -22,8 +22,7 @@ public static class StartGame
     {
         var dataTable = (string)dataTableName;        
         var dataTableAssetName = AssetUtility.GetDataTableAsset(dataTable, false);        
-        GameEntry.DataTable.LoadDataTable(dataTable, dataTableAssetName,null);        
+        GameEntry.DataTable.LoadDataTable(dataTable, dataTableAssetName,null);
     }
     
-
 }

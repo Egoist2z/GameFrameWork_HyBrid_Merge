@@ -11,7 +11,7 @@ public class ProcedureMenu : ProcedureBase
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);
-        StartGame();                
+        StartGame();
     }
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -26,6 +26,6 @@ public class ProcedureMenu : ProcedureBase
 
     private void StartGame() 
     {        
-        GameEntry.HotUpdate.RunMethod("StartGame", "OpenMenuForm");        
+        GameEntry.HotUpdate.RunMethod("StartGame", "OpenMenuForm");
     }    
 }

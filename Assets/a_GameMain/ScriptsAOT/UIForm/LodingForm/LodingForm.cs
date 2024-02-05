@@ -38,7 +38,7 @@ public class LodingForm : MonoBehaviour
     public void SetProgressBar(float value,string text)
     {        
         slider.value = value;
-        sliderText.text = (value * 100).ToString();
+        sliderText.text = text;
         if (!slider.IsActive())
         {
             slider.gameObject.SetActive(true);

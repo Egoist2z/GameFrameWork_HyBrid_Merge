@@ -1,6 +1,6 @@
 ﻿//------------------------------------------------------------
 // 此文件由 ComponentCollection 自动生成，请勿直接修改。
-// 生成时间：2023-09-15 14:22:46.99
+// 生成时间：2023-11-16 14:25:45.34
 //------------------------------------------------------------
 
 using UnityEngine;
@@ -9,12 +9,9 @@ using GameExtension;
 
 namespace HotUpdate.UI
 {
-    public partial class MenuForm 
+    public partial class SelectLevelForm 
     {
-        private Text m_TitleText;
-        private Button m_StartButton;
-        private Button m_SettingsButton;
-        private Button m_QuitButton;
+        private Button m_CloseButton;
 
         /// <summary>
         /// 初始化组件。
@@ -22,10 +19,7 @@ namespace HotUpdate.UI
         public void InitComponents(GameObject target)
         {
             var collection = target.GetComponent<ComponentCollection>();
-            m_TitleText = collection.GetComponent<Text>(0);
-            m_StartButton = collection.GetComponent<Button>(1);
-            m_SettingsButton = collection.GetComponent<Button>(2);
-            m_QuitButton = collection.GetComponent<Button>(3);
+            m_CloseButton = collection.GetComponent<Button>(0);
         }
     }
 }

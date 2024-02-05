@@ -250,6 +250,7 @@ namespace UnityGameFramework.Runtime
 
             m_InstanceRoot.gameObject.layer = LayerMask.NameToLayer("UI");
 
+            
             for (int i = 0; i < m_UIGroups.Length; i++)
             {
                 if (!AddUIGroup(m_UIGroups[i].Name, m_UIGroups[i].Depth))
@@ -258,6 +259,7 @@ namespace UnityGameFramework.Runtime
                     continue;
                 }
             }
+            
         }
 
         /// <summary>

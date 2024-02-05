@@ -742,7 +742,7 @@ namespace GameFramework.UI
                 throw new GameFrameworkException("UI group name is invalid.");
             }
 
-            UIGroup uiGroup = (UIGroup)GetUIGroup(uiGroupName);
+            UIGroup uiGroup = (UIGroup)GetUIGroup(uiGroupName);            
             if (uiGroup == null)
             {
                 throw new GameFrameworkException(Utility.Text.Format("UI group '{0}' is not exist.", uiGroupName));

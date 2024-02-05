@@ -137,10 +137,8 @@ namespace UnityGameFramework.Runtime
                     Log.Error("Game Framework component type '{0}' is already exist.", type.FullName);
                     return;
                 }
-
                 current = current.Next;
             }
-
             s_GameFrameworkComponents.AddLast(gameFrameworkComponent);
         }
     }

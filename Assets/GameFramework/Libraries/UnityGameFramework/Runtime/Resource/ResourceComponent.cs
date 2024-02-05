@@ -132,6 +132,12 @@ namespace UnityGameFramework.Runtime
             {
                 return m_ResourceManager.ResourceMode;
             }
+#if UNITY_EDITOR 
+            set
+            {
+                m_ResourceMode = value;
+            }
+#endif            
         }
 
         /// <summary>

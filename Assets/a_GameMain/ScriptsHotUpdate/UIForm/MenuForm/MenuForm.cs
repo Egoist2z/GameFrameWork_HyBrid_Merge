@@ -29,9 +29,19 @@ namespace HotUpdate.UI
 
         public void AddConponentEvent() 
         {
-            m_StartButton.onClick.AddListener(()=> {
-                m_TitleText.text = "Start";
-            });
+            m_StartButton.onClick.AddListener(SelectLevel);
+            m_SettingsButton.onClick.AddListener(OpenSettings);
+            m_QuitButton.onClick.AddListener(()=> { UnityGameFramework.Runtime.GameEntry.Shutdown(UnityGameFramework.Runtime.ShutdownType.Quit);});
+        }
+
+        private void SelectLevel() 
+        {           
+            GameEntry.UI.OpenUIForm(FormId.SelectLevelForm);
+        }
+
+        private void OpenSettings() 
+        {
+
         }
     }
 }

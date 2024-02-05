@@ -77,7 +77,7 @@ public class ProcedureCheckVersion : ProcedureBase
 #endif
         if (!string.IsNullOrEmpty(url))
         {
-            Application.OpenURL(url);            
+            Application.OpenURL(url);
         }
     }
 
@@ -101,7 +101,7 @@ public class ProcedureCheckVersion : ProcedureBase
 
         Log.Info("Latest game version is '{0}', local game version is '{1}'", m_VersionInfo.InternalGameVersion.ToString(), Version.GameVersion);
 
-        
+
         //当前应用版本低于 CDN配置版本 需要更新整个应用
         if (GameVersionToIntValue(Version.GameVersion) < GameVersionToIntValue(m_VersionInfo.InternalGameVersion))
         {
@@ -110,10 +110,10 @@ public class ProcedureCheckVersion : ProcedureBase
             {
                 title = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormTitle),
                 content = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormContents),
-                quit = () => { Application.Quit(); },
+                quit = () => { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
                 update = GotoUpdateApp,
             };
-            GameEntry.BuiltinData.OpenGotoUpdateForm(data);                    
+            GameEntry.BuiltinData.OpenGotoUpdateForm(data);
             return;
         }
 
@@ -136,7 +136,7 @@ public class ProcedureCheckVersion : ProcedureBase
 
     private string GetPlatformPath()
     {
-#if UNITY_WII
+#if UNITY_EDITOR_WIN || UNITY_WIN
         return "Windows";
 #elif UNITY_ANDROID
         return "Android";

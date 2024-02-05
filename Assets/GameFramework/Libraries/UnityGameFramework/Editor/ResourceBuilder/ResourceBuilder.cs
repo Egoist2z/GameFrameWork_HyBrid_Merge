@@ -16,15 +16,29 @@ namespace UnityGameFramework.Editor.ResourceTools
     /// <summary>
     /// 资源生成器。
     /// </summary>
-    internal sealed class ResourceBuilder : EditorWindow
+    public sealed class ResourceBuilder : EditorWindow
     {
         private ResourceBuilderController m_Controller = null;
         private bool m_OrderBuildResources = false;
         private int m_CompressionHelperTypeNameIndex = 0;
         private int m_BuildEventHandlerTypeNameIndex = 0;
 
+        public bool OrderBuildResources
+        {
+            get
+            {
+                return m_OrderBuildResources;
+            }
+            set
+            {
+                m_OrderBuildResources = value;
+            }
+        }
+
+
+
         [MenuItem("Game Framework/Resource Tools/Resource Builder", false, 40)]
-        private static void Open()
+        public static ResourceBuilder Open()
         {
             ResourceBuilder window = GetWindow<ResourceBuilder>("Resource Builder", true);
 #if UNITY_2019_3_OR_NEWER
@@ -32,6 +46,7 @@ namespace UnityGameFramework.Editor.ResourceTools
 #else
             window.minSize = new Vector2(800f, 600f);
 #endif
+            return window;
         }
 
         private void OnEnable()
@@ -91,7 +106,7 @@ namespace UnityGameFramework.Editor.ResourceTools
             {
                 m_OrderBuildResources = false;
                 BuildResources();
-            }            
+            }
         }
 
         private void OnGUI()
@@ -415,12 +430,13 @@ namespace UnityGameFramework.Editor.ResourceTools
             message = "Ready to build.";
         }
 
-        private void BuildResources()
+        public void BuildResources()
         {
             if (m_Controller.BuildResources())
             {
                 Debug.Log("Build resources success.");
                 SaveConfiguration();
+                Debug.LogError("BuildRe+++++++++++++++++++");
             }
             else
             {
@@ -509,5 +525,33 @@ namespace UnityGameFramework.Editor.ResourceTools
             EditorUtility.ClearProgressBar();
             Debug.LogWarning(Utility.Text.Format("Build resources error with error message '{0}'.", errorMessage));
         }
+
+        public void PackageBuidel(GameFrameworkAction<Platform> buidelOverCallBack=null) 
+        {
+            m_Controller.OutputPackageSelected = true;
+            m_Controller.OutputFullSelected = false;
+            m_Controller.OutputPackedSelected = false;
+            m_Controller.SelectPlatform(Platform.Windows,false);
+            m_Controller.SelectPlatform(Platform.Linux, false);
+            m_Controller.SelectPlatform(Platform.WindowsStore, false);
+            m_Controller.SelectPlatform(Platform.Windows64, false);
+            m_Controller.SelectPlatform(Platform.IOS, false);
+            m_Controller.SelectPlatform(Platform.WebGL, false);
+            m_Controller.SelectPlatform(Platform.MacOS, false);
+            m_Controller.SelectPlatform(Platform.Android, true);
+            m_Controller.OutputDirectory = Application.streamingAssetsPath;
+            if (buidelOverCallBack!=null)
+            {
+                m_Controller.ProcessResourceComplete += buidelOverCallBack;
+            }            
+        }
+
+        public void UpdateBuidel()
+        {
+            m_Controller.OutputPackageSelected = true;
+            m_Controller.OutputFullSelected = false;
+            m_Controller.OutputPackedSelected = false;
+        }
+
     }
 }

@@ -45,7 +45,7 @@ public class HotUpdateComponent : GameFrameworkComponent
         else
         {
             GameEntry.Resource.LoadAsset(HotPath, loadAssetCallbacks);
-        }
+        }      
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public class HotUpdateComponent : GameFrameworkComponent
         TextAsset textAsset = (TextAsset) asset;
         hotAssembly = Assembly.Load(textAsset.bytes);
         loadHotAssemblySuccess = true;
-        Log.Debug("LoadHotAssembly Success {0}",assetName);
+        Log.Debug("LoadHotAssembly {0} Success", assetName);
     }
 
     public void LoadHotAssemblyFailureCallback(string assetName, LoadResourceStatus status, string errorMessage, object userData)

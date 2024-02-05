@@ -90,14 +90,18 @@ namespace HotUpdate.UI
         {
             int oldDepth = Depth;
             base.OnDepthChanged(uiGroupDepth, depthInUIGroup);
-            //int deltaDepth = UGUIGroupHelper.DepthFactor * uiGroupDepth + DepthFactor * depthInUIGroup - oldDepth + OriginalDepth;
+            int deltaDepth = UGUIGroupHelper.DepthFactor * uiGroupDepth + DepthFactor * depthInUIGroup - oldDepth + OriginalDepth;
             GetComponentsInChildren(true, m_ChildrenCanvas);
             for (int i = 0; i < m_ChildrenCanvas.Count; i++)
             {
-              //  m_ChildrenCanvas[i].sortingOrder += deltaDepth;
+              m_ChildrenCanvas[i].sortingOrder += deltaDepth;
             }
             m_ChildrenCanvas.Clear();
         }
 
+        protected void Close() 
+        {
+            GameEntry.UI.CloseUIForm(UIForm);
+        }
     }
 }

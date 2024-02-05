@@ -22,22 +22,21 @@ public class ProcedurePreload : ProcedureBase
     public static string[] DataTableNames =new string[]
     {
         "UIFormBaseInfo",
-
     };
 
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);
         GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("加载游戏数据");
-        m_LoadedFlag.Clear();        
-                
+        m_LoadedFlag.Clear();
+        
         GameEntry.Event.Subscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);
         GameEntry.Event.Subscribe(LoadDataTableFailureEventArgs.EventId, OnLoadDataTableFailure);        
         ///加载游戏中表格数据
         foreach (var item in DataTableNames)
         {
             LoadDataTable(item);
-        }        
+        }
     }
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)

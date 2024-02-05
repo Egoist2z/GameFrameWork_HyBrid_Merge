@@ -2,16 +2,19 @@
 <UnityGameFramework>
   <ResourceCollection>
     <Resources>
+      <Resource Name="GameAssets/DataTables/UIFormBaseInfo" LoadType="0" Packed="False" />
       <Resource Name="GameAssets/HotUpdate_dll/HotUpdate" LoadType="0" Packed="False" />
       <Resource Name="GameAssets/Scenes/Game_Scene" LoadType="0" Packed="False" />
-      <Resource Name="GameAssets/Scenes/Start_Game" LoadType="0" Packed="False" />
-      <Resource Name="GameAssets/UIForm/Meum" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/UIForms/MenuForm" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/UIForms/SelectLevelForm" LoadType="0" Packed="False" />
     </Resources>
     <Assets>
+      <Asset Guid="01ff14aafee86bf45a861dc0a6b914ae" ResourceName="GameAssets/UIForms/SelectLevelForm" />
       <Asset Guid="23bdb95aea1253444a952f9acfdbc2a3" ResourceName="GameAssets/Scenes/Game_Scene" />
       <Asset Guid="46259edd1c5a1f448a9209abc6767423" ResourceName="GameAssets/HotUpdate_dll/HotUpdate" />
-      <Asset Guid="85e1ee863ed7eb349883eb61cc66f10e" ResourceName="GameAssets/UIForm/Meum" />
-      <Asset Guid="9fc0d4010bbf28b4594072e72b8655ab" ResourceName="GameAssets/Scenes/Start_Game" />
+      <Asset Guid="85e1ee863ed7eb349883eb61cc66f10e" ResourceName="GameAssets/UIForms/MenuForm" />
+      <Asset Guid="890ea66db646c514b9a6cd03d6c6508f" ResourceName="GameAssets/DataTables/UIFormBaseInfo" />
+      <Asset Guid="c6c07ddaa35a47e44879dda05ab9ceff" ResourceName="GameAssets/DataTables/UIFormBaseInfo" />
     </Assets>
   </ResourceCollection>
 </UnityGameFramework>

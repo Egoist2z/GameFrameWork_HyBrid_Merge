@@ -1,6 +1,8 @@
 using UnityGameFramework.Runtime;
 using HotUpdate.DataTables;
 using AOT;
+using GameFramework.UI;
+using System;
 
 namespace HotUpdate.UI
 {    
@@ -18,10 +20,25 @@ namespace HotUpdate.UI
             if (component.HasUIForm(formName))
             {
                 return;
-            }
+            }            
             component.OpenUIForm(formName,uiFormData.UIGroupName);
         }
 
+        public static void InitGroups(this UIComponent component)
+        {
+            string name = null;
+            int dp = 0;
+            foreach (var item in Enum.GetValues(typeof(FormGroups)))
+            {
+                name = item.ToString();
+                if (component.HasUIGroup(name))
+                {
+                    continue;
+                }
+                dp = (int)item;
+                component.AddUIGroup(name,dp);
+            }            
+        }
 
     }
 }

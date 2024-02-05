@@ -568,6 +568,7 @@ namespace UnityGameFramework.Editor.ResourceTools
 
         public bool BuildResources()
         {
+            Debug.LogError("BuildRes");
             if (!IsValidOutputDirectory)
             {
                 return false;
@@ -729,7 +730,7 @@ namespace UnityGameFramework.Editor.ResourceTools
 
                 m_BuildReport.LogInfo("Build resources for selected platforms complete.");
                 m_BuildReport.SaveReport();
-
+                
                 return true;
             }
             catch (Exception exception)

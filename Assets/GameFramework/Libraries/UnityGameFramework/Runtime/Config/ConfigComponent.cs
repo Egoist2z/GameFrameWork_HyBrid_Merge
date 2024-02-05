@@ -67,7 +67,6 @@ namespace UnityGameFramework.Runtime
         protected override void Awake()
         {
             base.Awake();
-
             m_ConfigManager = GameFrameworkEntry.GetModule<IConfigManager>();
             if (m_ConfigManager == null)
             {

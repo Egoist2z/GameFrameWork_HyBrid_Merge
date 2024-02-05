@@ -70,8 +70,9 @@ public class BuiltinDataComponent : GameFrameworkComponent
         }
     }
 
-
-
+    /// <summary>
+    /// 加载界面
+    /// </summary>
     public void OpenLodingForm()
     {
         GameObject form = Resources.Load<GameObject>("LodingForm");
@@ -93,6 +94,10 @@ public class BuiltinDataComponent : GameFrameworkComponent
         m_lodingForm = null;
     }
 
+    /// <summary>
+    /// 游戏进入动画
+    /// </summary>
+    /// <param name="action"></param>
     public void OpenSplash(Action action)
     {
         GameObject form = Resources.Load<GameObject>("GameSplashForm");
@@ -107,7 +112,10 @@ public class BuiltinDataComponent : GameFrameworkComponent
         form.GetComponent<GameSplashForm>().Play(action);
     }
 
-
+    /// <summary>
+    /// 弹出确认界面
+    /// </summary>
+    /// <param name="data"></param>
     public void OpenGotoUpdateForm(GotoUpdateFormData data) 
     {
         GameObject form = Resources.Load<GameObject>("GotoUpdateForm");

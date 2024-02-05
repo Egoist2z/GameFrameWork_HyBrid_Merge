@@ -261,6 +261,7 @@ namespace UnityGameFramework.Editor.ResourceTools
                     }
                 }
 
+                UnityEngine.Debug.LogError("CallBack___Save");
                 xmlDocument.Save(m_BuildReportName);
                 File.WriteAllText(m_BuildLogName, m_LogBuilder.ToString());
             }
