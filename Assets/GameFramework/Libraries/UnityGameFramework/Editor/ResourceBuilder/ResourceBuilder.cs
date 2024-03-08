@@ -435,8 +435,7 @@ namespace UnityGameFramework.Editor.ResourceTools
             if (m_Controller.BuildResources())
             {
                 Debug.Log("Build resources success.");
-                SaveConfiguration();
-                Debug.LogError("BuildRe+++++++++++++++++++");
+                SaveConfiguration();                
             }
             else
             {

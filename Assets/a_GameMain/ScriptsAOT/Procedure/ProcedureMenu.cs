@@ -26,6 +26,6 @@ public class ProcedureMenu : ProcedureBase
 
     private void StartGame() 
     {        
-        GameEntry.HotUpdate.RunMethod("StartGame", "OpenMenuForm");
+        GameEntry.HotUpdate.RunMethod("HotUpdate.Start.StartGame", "OpenMenuForm");
     }    
 }

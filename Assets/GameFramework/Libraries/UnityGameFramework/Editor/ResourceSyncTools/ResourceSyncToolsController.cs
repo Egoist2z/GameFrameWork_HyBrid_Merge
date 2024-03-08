@@ -33,7 +33,7 @@ namespace UnityGameFramework.Editor.ResourceTools
 
         public string[] GetUsedAssetBundleNames()
         {
-            HashSet<string> hashSet = new HashSet<string>(GetAllAssetBundleNames());
+            HashSet<string> hashSet = new HashSet<string>(GetAllAssetBundleNames());            
             hashSet.ExceptWith(GetUnusedAssetBundleNames());
             return hashSet.ToArray();
         }

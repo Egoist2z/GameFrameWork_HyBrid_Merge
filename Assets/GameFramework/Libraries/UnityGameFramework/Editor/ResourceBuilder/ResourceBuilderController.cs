@@ -567,8 +567,7 @@ namespace UnityGameFramework.Editor.ResourceTools
         }
 
         public bool BuildResources()
-        {
-            Debug.LogError("BuildRes");
+        {            
             if (!IsValidOutputDirectory)
             {
                 return false;

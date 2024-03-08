@@ -27,9 +27,10 @@ public class ProcedureCheckVersion : ProcedureBase
         m_NeedUpdateVersion = false;
         m_VersionInfo = null;
 
+        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState(GameEntry.Localization.GetStringOrNull(LocalizationDicKey.CheckVersionTips));
+
         GameEntry.Event.Subscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
-        GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
-        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("检查版本信息中...");
+        GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);        
         GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);
     }
 
@@ -110,6 +111,8 @@ public class ProcedureCheckVersion : ProcedureBase
             {
                 title = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormTitle),
                 content = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormContents),
+                affirm = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormAffirm),
+                cancel = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormCancel),                            
                 quit = () => { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
                 update = GotoUpdateApp,
             };

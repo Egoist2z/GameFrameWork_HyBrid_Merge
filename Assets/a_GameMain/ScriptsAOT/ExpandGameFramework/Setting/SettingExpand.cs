@@ -23,4 +23,9 @@ public static class SettingExpand
         return Language.Unspecified;
     }
 
+    //public static void SetAssetsLanguage
+
+
+
+
 }

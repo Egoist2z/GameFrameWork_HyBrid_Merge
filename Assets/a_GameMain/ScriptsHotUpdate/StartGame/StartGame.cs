@@ -1,28 +1,31 @@
-using AOT;
+ï»¿using AOT;
 using HotUpdate.UI;
 using HotUpdate.DataTables;
 using UnityGameFramework.Runtime;
 
-public static class StartGame
+namespace HotUpdate.Start
 {
-    /// <summary>
-    /// ´ò¿ªÓÎÏ·µÇÈë or ²Ëµ¥½çÃæ
-    /// </summary>
-    public static void OpenMenuForm() 
+    public static class StartGame
     {
-        GameEntry.UI.InitGroups();        
-        GameEntry.UI.OpenUIForm(FormId.MenuForm);        
-    }    
+        /// <summary>
+        /// æ‰“å¼€æ¸¸æˆç™»å…¥ or èœå•ç•Œé¢
+        /// </summary>
+        public static void OpenMenuForm()
+        {
+            GameEntry.UI.InitGroups();
+            GameEntry.UI.OpenUIForm(FormId.MenuForm);
+        }
 
-    /// <summary>
-    /// ¼ÓÔØÓÎÏ·ÅäÖÃÊı¾İ±í
-    /// </summary>
-    /// <param name="dataTableName"></param>
-    public static void LoadDataTable(object dataTableName) 
-    {
-        var dataTable = (string)dataTableName;        
-        var dataTableAssetName = AssetUtility.GetDataTableAsset(dataTable, false);        
-        GameEntry.DataTable.LoadDataTable(dataTable, dataTableAssetName,null);
+        /// <summary>
+        /// åŠ è½½æ¸¸æˆé…ç½®æ•°æ®è¡¨
+        /// </summary>
+        /// <param name="dataTableName"></param>
+        public static void LoadDataTable(object dataTableName)
+        {
+            var dataTable = (string)dataTableName;
+            var dataTableAssetName = AssetUtility.GetDataTableAsset(dataTable, false);
+            GameEntry.DataTable.LoadDataTable(dataTable, dataTableAssetName, null);
+        }
+
     }
-    
 }

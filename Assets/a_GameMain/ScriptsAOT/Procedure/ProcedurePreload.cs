@@ -49,7 +49,7 @@ public class ProcedurePreload : ProcedureBase
                 return;
             }
         }
-        ChangeState<ProcedureMenu>(procedureOwner);        
+        ChangeState<ProcedureMenu>(procedureOwner);
     }
 
     protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
@@ -64,7 +64,7 @@ public class ProcedurePreload : ProcedureBase
     #region 加载游戏数据表    
     private void LoadDataTable(string dataTableName)
     {
-        GameEntry.HotUpdate.RunMethod("StartGame", "LoadDataTable",new object[] { dataTableName });
+        GameEntry.HotUpdate.RunMethod("HotUpdate.Start.StartGame", "LoadDataTable",new object[] { dataTableName });
         var dataTableAssetName = AssetUtility.GetDataTableAsset(dataTableName, false);
         m_LoadedFlag.Add(dataTableAssetName, false);
     }
@@ -72,13 +72,13 @@ public class ProcedurePreload : ProcedureBase
     private void OnLoadDataTableSuccess(object sender, GameEventArgs e)
     {
         LoadDataTableSuccessEventArgs ne = (LoadDataTableSuccessEventArgs)e;
-        m_LoadedFlag[ne.DataTableAssetName] = true;        
+        m_LoadedFlag[ne.DataTableAssetName] = true;
         Log.Info("Load data table '{0}' OK.", ne.DataTableAssetName);
     }
 
     private void OnLoadDataTableFailure(object sender, GameEventArgs e)
     {
-        LoadDataTableFailureEventArgs ne = (LoadDataTableFailureEventArgs)e;        
+        LoadDataTableFailureEventArgs ne = (LoadDataTableFailureEventArgs)e;
         Log.Error("Can not load data table '{0}' from '{1}' with error message '{2}'.", ne.DataTableAssetName, ne.DataTableAssetName, ne.ErrorMessage);
     }
     #endregion

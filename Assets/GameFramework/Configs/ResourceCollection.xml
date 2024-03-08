@@ -2,19 +2,25 @@
 <UnityGameFramework>
   <ResourceCollection>
     <Resources>
-      <Resource Name="GameAssets/DataTables/UIFormBaseInfo" LoadType="0" Packed="False" />
-      <Resource Name="GameAssets/HotUpdate_dll/HotUpdate" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/DataTables/UIFormBaseInfo" LoadType="0" Packed="True" />
+      <Resource Name="GameAssets/HotUpdate_dll/HotUpdate" LoadType="0" Packed="True" />
+      <Resource Name="GameAssets/Scenes/EditorScenes/OpenUIPrefabs" LoadType="0" Packed="False" />
       <Resource Name="GameAssets/Scenes/Game_Scene" LoadType="0" Packed="False" />
-      <Resource Name="GameAssets/UIForms/MenuForm" LoadType="0" Packed="False" />
-      <Resource Name="GameAssets/UIForms/SelectLevelForm" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/Scenes/Start_Game" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/UIForms/en-us/MenuForm" Variant="en-us" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/UIForms/zh-cn/MenuForm" Variant="zh-cn" LoadType="0" Packed="False" />
+      <Resource Name="GameAssets/UIForms/zh-tw/MenuForm" Variant="zh-tw" LoadType="0" Packed="False" />
     </Resources>
     <Assets>
-      <Asset Guid="01ff14aafee86bf45a861dc0a6b914ae" ResourceName="GameAssets/UIForms/SelectLevelForm" />
+      <Asset Guid="1eda1b621c387e440bb68f3c9d058c93" ResourceName="GameAssets/UIForms/en-us/MenuForm" ResourceVariant="en-us" />
       <Asset Guid="23bdb95aea1253444a952f9acfdbc2a3" ResourceName="GameAssets/Scenes/Game_Scene" />
       <Asset Guid="46259edd1c5a1f448a9209abc6767423" ResourceName="GameAssets/HotUpdate_dll/HotUpdate" />
-      <Asset Guid="85e1ee863ed7eb349883eb61cc66f10e" ResourceName="GameAssets/UIForms/MenuForm" />
+      <Asset Guid="7dd3dde9dad2c304188f18cc4f00e794" ResourceName="GameAssets/UIForms/zh-cn/MenuForm" ResourceVariant="zh-cn" />
+      <Asset Guid="85e1ee863ed7eb349883eb61cc66f10e" ResourceName="GameAssets/UIForms/zh-tw/MenuForm" ResourceVariant="zh-tw" />
       <Asset Guid="890ea66db646c514b9a6cd03d6c6508f" ResourceName="GameAssets/DataTables/UIFormBaseInfo" />
+      <Asset Guid="9fc0d4010bbf28b4594072e72b8655ab" ResourceName="GameAssets/Scenes/Start_Game" />
       <Asset Guid="c6c07ddaa35a47e44879dda05ab9ceff" ResourceName="GameAssets/DataTables/UIFormBaseInfo" />
+      <Asset Guid="f2c8c54efa8319e428dd65d217d90fc8" ResourceName="GameAssets/Scenes/EditorScenes/OpenUIPrefabs" />
     </Assets>
   </ResourceCollection>
 </UnityGameFramework>

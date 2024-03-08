@@ -48,7 +48,7 @@ public class ProcedureLaunch : ProcedureBase
             return;
         }
 
-        var saveLanguage = GameEntry.Setting.GetGameLanguage();        
+        var saveLanguage = GameEntry.Setting.GetGameLanguage();
         Language language = GameEntry.Localization.SystemLanguage;
         
         if (saveLanguage!=Language.Unspecified)
@@ -90,11 +90,12 @@ public class ProcedureLaunch : ProcedureBase
                 currentVariant = "zh-tw";
                 break;            
             default:
-                currentVariant = "zh-cn";
+                currentVariant = "en-us";
                 break;
         }
 
         GameEntry.Resource.SetCurrentVariant(currentVariant);
+        GameEntry.Setting.SetString(SettingTag.AssetsLanguage,currentVariant);
         Log.Info("Init current variant complete.");        
     }
 

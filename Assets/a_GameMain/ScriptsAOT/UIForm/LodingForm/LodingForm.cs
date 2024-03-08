@@ -28,11 +28,7 @@ public class LodingForm : MonoBehaviour
     }
     
     public void SetLodingState(string str)
-    {
-        if (group.alpha == 0)
-        {            
-            group.alpha = 1;
-        }
+    {      
         text.text = str;
     }    
     public void SetProgressBar(float value,string text)

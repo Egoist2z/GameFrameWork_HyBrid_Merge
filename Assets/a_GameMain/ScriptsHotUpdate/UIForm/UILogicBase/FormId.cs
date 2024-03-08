@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,38 +6,37 @@ namespace HotUpdate.UI
 {
     public enum FormId
     {
-        Null=0,
+        Null = 0,
 
-        MenuForm=1,
+        MenuForm = 1,
 
         SelectLevelForm = 2,
-
     }
 
     public enum FormGroups
     {        
         /// <summary>
-        /// ²Ëµ¥
+        /// èœå•
         /// </summary>
         Meun=0,
         /// <summary>
-        /// Ö÷½çÃæ
+        /// ä¸»ç•Œé¢
         /// </summary>
         Main=1,
         /// <summary>
-        /// È«ÆÁ½çÃæ
+        /// å…¨å±ç•Œé¢
         /// </summary>
         Full=2,
         /// <summary>
-        /// µ¯³ö½çÃæ
+        /// å¼¹å‡ºç•Œé¢
         /// </summary>
         Popup=3,
         /// <summary>
-        /// ÌáÊ¾
+        /// æç¤º
         /// </summary>
         Prompter=4,
         /// <summary>
-        /// Òıµ¼
+        /// å¼•å¯¼
         /// </summary>
         Guidance =5,
     }

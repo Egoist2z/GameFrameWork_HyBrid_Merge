@@ -10,8 +10,6 @@ public class HotUpdateComponent : GameFrameworkComponent
     public Assembly hotAssembly;
 
     private bool loadHotAssemblySuccess;
-
-
     public bool LoadHotAssemblySuccess
     {
         get

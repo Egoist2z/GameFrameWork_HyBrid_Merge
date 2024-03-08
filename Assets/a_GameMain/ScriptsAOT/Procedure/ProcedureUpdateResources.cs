@@ -19,34 +19,34 @@ public class ProcedureUpdateResources : ProcedureBase
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
         base.OnEnter(procedureOwner);
-
         m_UpdateResourcesComplete = false;
         m_UpdateCount = procedureOwner.GetData<VarInt32>("UpdateResourceCount");
         procedureOwner.RemoveData("UpdateResourceCount");
         m_UpdateTotalCompressedLength = procedureOwner.GetData<VarInt64>("UpdateResourceTotalCompressedLength");
         procedureOwner.RemoveData("UpdateResourceTotalCompressedLength");
         m_UpdateSuccessCount = 0;
-        m_UpdateLengthData.Clear();
-        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("下载最新资源中...");
+        m_UpdateLengthData.Clear();        
         GameEntry.Event.Subscribe(ResourceUpdateStartEventArgs.EventId, OnResourceUpdateStart);
         GameEntry.Event.Subscribe(ResourceUpdateChangedEventArgs.EventId, OnResourceUpdateChanged);
         GameEntry.Event.Subscribe(ResourceUpdateSuccessEventArgs.EventId, OnResourceUpdateSuccess);
         GameEntry.Event.Subscribe(ResourceUpdateFailureEventArgs.EventId, OnResourceUpdateFailure);
 
+        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("下载最新资源中...");
+
         if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)//使用移动网络提示
         {
             var data = new AOT_UIForm.GotoUpdateFormData()
             {
-                title = "提示",
+                title = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormTitle),
                 content = "当前移动网络,是否需要更新",
                 quit = () => { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
                 update = () => StartUpdateResources(null),
             };
-            GameEntry.BuiltinData.OpenGotoUpdateForm(data);
+            GameEntry.BuiltinData.OpenGotoUpdateForm(data);            
             return;
         }
 
-        StartUpdateResources(null);
+        StartUpdateResources(null);     
     }
 
     protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
@@ -72,7 +72,6 @@ public class ProcedureUpdateResources : ProcedureBase
 
     private void StartUpdateResources(object userData)
     {
-
         Log.Info("Start update resources...");
         GameEntry.Resource.UpdateResources(OnUpdateResourcesComplete);
     }

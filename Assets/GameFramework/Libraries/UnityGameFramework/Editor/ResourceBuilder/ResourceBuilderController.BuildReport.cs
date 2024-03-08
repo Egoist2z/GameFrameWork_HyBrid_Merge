@@ -259,9 +259,7 @@ namespace UnityGameFramework.Editor.ResourceTools
                         xmlCode.Attributes.SetNamedItem(xmlAttribute);
                         xmlCodes.AppendChild(xmlCode);
                     }
-                }
-
-                UnityEngine.Debug.LogError("CallBack___Save");
+                }                
                 xmlDocument.Save(m_BuildReportName);
                 File.WriteAllText(m_BuildLogName, m_LogBuilder.ToString());
             }
