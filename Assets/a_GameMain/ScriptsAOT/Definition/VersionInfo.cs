@@ -5,20 +5,24 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-    public class VersionInfo
-    {    
+public class VersionInfo
+{
+    /// <summary>
+    ///游戏版本号 
+    /// </summary>
+    public string GameVersion;
     /// <summary>
     ///最新的游戏内部版本号 
     /// </summary>
-    public string InternalGameVersion;    
+    public string InternalGameVersion;
     /// <summary>
     ///最新的资源内部版本号 
     /// </summary>
-    public int InternalResourceVersion;    
+    public int InternalResourceVersion;
     /// <summary>
     ///资源更新下载地址 
     /// </summary>
-    public string UpdatePrefixUri;    
+    public string UpdatePrefixUri;
     /// <summary>
     ///资源版本列表长度 
     /// </summary>
@@ -34,5 +38,5 @@
     /// <summary>
     ///资源版本列表压缩后哈希值 
     /// </summary>    
-    public int VersionListCompressedHashCode;        
-    }
+    public int VersionListCompressedHashCode;
+}

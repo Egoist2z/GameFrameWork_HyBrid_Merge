@@ -18,9 +18,8 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
             m_NeedUpdateResources = false;
             m_UpdateResourceCount = 0;
             m_UpdateResourceTotalCompressedLength = 0L;
-            GameEntry.Resource.CheckResources(OnCheckResourcesComplete);
-            GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("验证本地资源...");
-        }
+            GameEntry.Resource.CheckResources(OnCheckResourcesComplete);                        
+    }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
         {

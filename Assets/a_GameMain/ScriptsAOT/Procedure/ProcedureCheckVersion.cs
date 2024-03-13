@@ -27,10 +27,10 @@ public class ProcedureCheckVersion : ProcedureBase
         m_NeedUpdateVersion = false;
         m_VersionInfo = null;
 
-        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState(GameEntry.Localization.GetStringOrNull(LocalizationDicKey.CheckVersionTips));
+        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState(GameEntry.Localization.GetStringOrNull(LocalizationDicKey.LodingForm.CheckVersionTips));
 
         GameEntry.Event.Subscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
-        GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);        
+        GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
         GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);
     }
 
@@ -43,8 +43,7 @@ public class ProcedureCheckVersion : ProcedureBase
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
     {
-        base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-
+        base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);        
         if (!m_CheckVersionComplete)
         {
             return;
@@ -68,11 +67,11 @@ public class ProcedureCheckVersion : ProcedureBase
     {
         string url = null;
 #if UNITY_EDITOR
-        return;
+        url = "";
 #elif UNITY_WIN
         url = GameEntry.BuiltinData.BuildInfo.WindowsAppUrl;
 #elif UNITY_IOS
-            url = GameEntry.BuiltinData.BuildInfo.IOSAppUrl;
+        url = GameEntry.BuiltinData.BuildInfo.IOSAppUrl;
 #elif UNITY_ANDROID
         url = GameEntry.BuiltinData.BuildInfo.AndroidAppUrl;
 #endif
@@ -109,10 +108,10 @@ public class ProcedureCheckVersion : ProcedureBase
             // 需要强制更新游戏应用
             var data = new AOT_UIForm.GotoUpdateFormData()
             {
-                title = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormTitle),
-                content = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormContents),
-                affirm = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormAffirm),
-                cancel = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormCancel),                            
+                title = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.GotoUpdateForm.UpdateFormTitle),
+                content = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.GotoUpdateForm.UpdateFormUpdateApp),
+                affirm = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.GotoUpdateForm.UpdateFormAffirm),
+                cancel = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.GotoUpdateForm.UpdateFormCancel),
                 quit = () => { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
                 update = GotoUpdateApp,
             };
@@ -133,18 +132,19 @@ public class ProcedureCheckVersion : ProcedureBase
         {
             return;
         }
-
         Log.Warning("Check version failure, error message is '{0}'.", ne.ErrorMessage);
     }
 
     private string GetPlatformPath()
     {
-#if UNITY_EDITOR_WIN || UNITY_WIN
+#if UNITY_EDITOR|| UNITY_WIN
         return "Windows";
 #elif UNITY_ANDROID
         return "Android";
 #elif UNITY_IOS
-          return "IOS";
+        return "IOS";
+#else
+      return "";
 #endif
         //return "Android";
         //switch (Application.platform)

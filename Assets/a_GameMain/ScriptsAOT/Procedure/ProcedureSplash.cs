@@ -13,7 +13,7 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 
 public class ProcedureSplash : ProcedureBase
 {
-    private bool playOver=false;
+    private bool playOver = false;
 
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
@@ -23,14 +23,13 @@ public class ProcedureSplash : ProcedureBase
             playOver = true;
             return;
         }
-
-        // TODO: 这里播放一个 Splash 动画        
+        //TODO: 这里播放一个 Splash 动画
         playOver = false;
-        GameEntry.BuiltinData.OpenSplash(()=> { playOver = true;});
-     }
+        GameEntry.BuiltinData.OpenSplash(() => { playOver = true; });
+    }
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
     {
-        base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);        
+        base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
         if (!playOver)
         {
             return;
@@ -53,9 +52,9 @@ public class ProcedureSplash : ProcedureBase
         else
         {
             // 可更新模式
-            Log.Info("Updatable resource mode detected.");            
+            Log.Info("Updatable resource mode detected.");
             ChangeState<ProcedureCheckVersion>(procedureOwner);
         }
-    }   
+    }
 }
 

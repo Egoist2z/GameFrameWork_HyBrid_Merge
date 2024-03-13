@@ -52,8 +52,8 @@ namespace AOT
         //}
 
         public static string GetUIFormAsset(string assetName)
-        {
-            return Utility.Text.Format("Assets/a_GameMain/GameAssets/UIForms/{0}.prefab.{1}", assetName,GameEntry.Localization.Language);
+        {            
+            return Utility.Text.Format("Assets/a_GameMain/GameAssets/UIForms/{0}.prefab",assetName);
         }
 
         //public static string GetUISoundAsset(string assetName)

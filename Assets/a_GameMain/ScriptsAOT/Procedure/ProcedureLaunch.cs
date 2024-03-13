@@ -25,16 +25,16 @@ public class ProcedureLaunch : ProcedureBase
         // 语言配置：设置当前使用的语言，如果不设置，则默认使用操作系统语言
         InitLanguageSettings();
 
-        // 变体配置：根据使用的语言，通知底层加载对应的资源变体
-        InitCurrentVariant();
-        
+        // 变体配置：根据需求使用的，通知底层加载对应的资源变体
+        //InitCurrentVariant();
+
         // 默认字典：加载默认字典文件 Assets/GameMain/Configs/DefaultLocalization
         // 此字典文件记录了资源更新前使用的各种语言的字符串，会随 App 一起发布，故不可更新
         GameEntry.BuiltinData.InitDefaultDictionary();
-        
+
         // 运行一帧即切换到 Splash 展示流程
         ChangeState<ProcedureSplash>(procedureOwner);
-    }    
+    }
 
 
     /// <summary>
@@ -50,18 +50,18 @@ public class ProcedureLaunch : ProcedureBase
 
         var saveLanguage = GameEntry.Setting.GetGameLanguage();
         Language language = GameEntry.Localization.SystemLanguage;
-        
-        if (saveLanguage!=Language.Unspecified)
+
+        if (saveLanguage != Language.Unspecified)
         {
             language = saveLanguage;
         }
-        
+
         if (language != Language.English && language != Language.ChineseSimplified && language != Language.ChineseTraditional)
         {
             // 若是暂不支持的语言，则使用英语
-            language = Language.English;                        
+            language = Language.English;
         }
-        
+
         GameEntry.Localization.Language = language;
         GameEntry.Setting.SetGameLanguage(language);
         Log.Info("Init language settings complete, current language is '{0}'.", GameEntry.Localization.Language.ToString());
@@ -88,15 +88,14 @@ public class ProcedureLaunch : ProcedureBase
 
             case Language.ChineseTraditional:
                 currentVariant = "zh-tw";
-                break;            
+                break;
             default:
                 currentVariant = "en-us";
                 break;
         }
-
         GameEntry.Resource.SetCurrentVariant(currentVariant);
-        GameEntry.Setting.SetString(SettingTag.AssetsLanguage,currentVariant);
-        Log.Info("Init current variant complete.");        
+        GameEntry.Setting.SetAssetsLanguage(currentVariant);
+        Log.Info("Init current variant complete.");
     }
 
 }

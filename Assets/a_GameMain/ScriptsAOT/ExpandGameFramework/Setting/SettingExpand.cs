@@ -23,9 +23,19 @@ public static class SettingExpand
         return Language.Unspecified;
     }
 
-    //public static void SetAssetsLanguage
+    public static void SetAssetsLanguage(this SettingComponent component,string currentVariant) 
+    {
+        if (component.HasSetting(SettingTag.AssetsLanguage)&& component.GetString(SettingTag.AssetsLanguage)==currentVariant)
+        {
+            return;
+        }
+        component.SetString(SettingTag.AssetsLanguage,currentVariant);
+        component.Save();
+    }
 
-
-
+    public static string GetAssetsLanguage(this SettingComponent component)
+    {
+        return component.GetString(SettingTag.AssetsLanguage);
+    }
 
 }

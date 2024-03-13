@@ -14,7 +14,7 @@ public class BuiltinDataComponent : GameFrameworkComponent
 {
     [SerializeField]
     private TextAsset m_BuildInfoTextAsset = null;
-    
+
     [SerializeField]
     private TextAsset m_DefaultDictionaryTextAsset = null;
 
@@ -23,7 +23,7 @@ public class BuiltinDataComponent : GameFrameworkComponent
 
     private BuildInfo m_BuildInfo = null;
 
-    
+
     public BuildInfo BuildInfo
     {
         get
@@ -39,7 +39,7 @@ public class BuiltinDataComponent : GameFrameworkComponent
             return m_lodingForm;
         }
     }
-    
+
     public void InitBuildInfo()
     {
         if (m_BuildInfoTextAsset == null || string.IsNullOrEmpty(m_BuildInfoTextAsset.text))
@@ -81,7 +81,7 @@ public class BuiltinDataComponent : GameFrameworkComponent
             Log.Error("LodingForm Lost");
             return;
         }
-        m_lodingForm =GameObject.Instantiate(form, GameEntry.UI.UIInstanceRoot).GetComponent<LodingForm>();        
+        m_lodingForm = GameObject.Instantiate(form, GameEntry.UI.UIInstanceRoot).GetComponent<LodingForm>();
         RectTransform rect = (RectTransform)m_lodingForm.transform;
         rect.localPosition = Vector3.zero;
         rect.sizeDelta = Vector2.zero;
@@ -101,7 +101,7 @@ public class BuiltinDataComponent : GameFrameworkComponent
     public void OpenSplash(Action action)
     {
         GameObject form = Resources.Load<GameObject>("GameSplashForm");
-        if (form==null)
+        if (form == null)
         {
             Log.Error("GameSplashForm Lost");
             return;
@@ -116,10 +116,10 @@ public class BuiltinDataComponent : GameFrameworkComponent
     /// 弹出确认界面
     /// </summary>
     /// <param name="data"></param>
-    public void OpenGotoUpdateForm(GotoUpdateFormData data) 
+    public void OpenGotoUpdateForm(GotoUpdateFormData data)
     {
         GameObject form = Resources.Load<GameObject>("GotoUpdateForm");
-        if (form==null)
+        if (form == null)
         {
             Log.Error("GameSplashForm Lost");
             return;

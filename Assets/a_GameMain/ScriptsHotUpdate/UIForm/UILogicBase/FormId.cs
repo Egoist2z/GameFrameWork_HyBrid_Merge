@@ -11,6 +11,8 @@ namespace HotUpdate.UI
         MenuForm = 1,
 
         SelectLevelForm = 2,
+
+        SettingForm=3,
     }
 
     public enum FormGroups

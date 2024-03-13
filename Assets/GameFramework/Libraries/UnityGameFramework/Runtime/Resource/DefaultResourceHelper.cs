@@ -113,8 +113,7 @@ namespace UnityGameFramework.Runtime
             bool isError = false;
             byte[] bytes = null;
             string errorMessage = null;
-            DateTime startTime = DateTime.UtcNow;
-
+            DateTime startTime = DateTime.UtcNow;            
 #if UNITY_5_4_OR_NEWER
             UnityWebRequest unityWebRequest = UnityWebRequest.Get(fileUri);
 #if UNITY_2017_2_OR_NEWER

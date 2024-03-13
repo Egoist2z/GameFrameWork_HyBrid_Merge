@@ -22,12 +22,13 @@ public class ProcedureLoadHotUpdateDll : ProcedureBase
         base.OnEnter(procedureOwner);
         //加载热更dll
         GameEntry.HotUpdate.InitHotAssembly();
-        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("加载脚本文件中");
+        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState(GameEntry.Localization.GetStringOrNull(LocalizationDicKey.LodingForm.Preload));
     }
 
     protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
     {
         base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+        return;
         if (GameEntry.HotUpdate.LoadHotAssemblySuccess)
         {
             ChangeState<ProcedurePreload>(procedureOwner);

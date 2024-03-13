@@ -41,7 +41,7 @@ namespace HotUpdate.UI
 
         private void OpenSettings() 
         {
-
+            GameEntry.UI.OpenUIForm(FormId.SettingForm);
         }
     }
 }

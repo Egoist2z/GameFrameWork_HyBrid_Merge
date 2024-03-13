@@ -16,8 +16,7 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 
             GameEntry.Event.Subscribe(ResourceVerifyStartEventArgs.EventId, OnResourceVerifyStart);
             GameEntry.Event.Subscribe(ResourceVerifySuccessEventArgs.EventId, OnResourceVerifySuccess);
-            GameEntry.Event.Subscribe(ResourceVerifyFailureEventArgs.EventId, OnResourceVerifyFailure);
-            GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("检查资源列表...");
+            GameEntry.Event.Subscribe(ResourceVerifyFailureEventArgs.EventId, OnResourceVerifyFailure);            
             m_VerifyResourcesComplete = false;
             GameEntry.Resource.VerifyResources(OnVerifyResourcesComplete);
         }

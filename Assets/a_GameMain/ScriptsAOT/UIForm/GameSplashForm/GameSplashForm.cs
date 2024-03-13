@@ -14,8 +14,8 @@ public class GameSplashForm : MonoBehaviour
     [SerializeReference]
     private CanvasGroup group;
 
-    public const string title= "Demo_1 ";
-    
+    public const string title= "2Z";    
+
     private void Start()
     {
         point.fillAmount = 0;
@@ -37,7 +37,7 @@ public class GameSplashForm : MonoBehaviour
             point.fillAmount += 0.05f;
             yield return new WaitForSecondsRealtime(0.05f);
         }
-        for (int i = 0; i < title.Length; i++)
+        for (int i = 0; i < title.Length+1; i++)
         {
             var str = title.Substring(0,i);
             lable.text = str;

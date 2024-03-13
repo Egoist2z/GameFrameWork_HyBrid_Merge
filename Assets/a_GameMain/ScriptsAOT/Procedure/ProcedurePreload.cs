@@ -26,8 +26,7 @@ public class ProcedurePreload : ProcedureBase
 
     protected override void OnEnter(ProcedureOwner procedureOwner)
     {
-        base.OnEnter(procedureOwner);
-        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("加载游戏数据");
+        base.OnEnter(procedureOwner);        
         m_LoadedFlag.Clear();
         
         GameEntry.Event.Subscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);
@@ -73,7 +72,7 @@ public class ProcedurePreload : ProcedureBase
     {
         LoadDataTableSuccessEventArgs ne = (LoadDataTableSuccessEventArgs)e;
         m_LoadedFlag[ne.DataTableAssetName] = true;
-        Log.Info("Load data table '{0}' OK.", ne.DataTableAssetName);
+        Log.Debug("Load data table '{0}' OK.", ne.DataTableAssetName);
     }
 
     private void OnLoadDataTableFailure(object sender, GameEventArgs e)

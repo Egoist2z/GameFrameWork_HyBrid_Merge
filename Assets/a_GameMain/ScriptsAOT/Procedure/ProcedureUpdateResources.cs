@@ -31,14 +31,14 @@ public class ProcedureUpdateResources : ProcedureBase
         GameEntry.Event.Subscribe(ResourceUpdateSuccessEventArgs.EventId, OnResourceUpdateSuccess);
         GameEntry.Event.Subscribe(ResourceUpdateFailureEventArgs.EventId, OnResourceUpdateFailure);
 
-        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState("下载最新资源中...");
+        GameEntry.BuiltinData.LodingFormTemplate.SetLodingState(GameEntry.Localization.GetStringOrNull(LocalizationDicKey.LodingForm.DownloadRes));
 
         if (Application.internetReachability == NetworkReachability.ReachableViaCarrierDataNetwork)//使用移动网络提示
         {
             var data = new AOT_UIForm.GotoUpdateFormData()
             {
-                title = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.UpdateFormTitle),
-                content = "当前移动网络,是否需要更新",
+                title = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.GotoUpdateForm.UpdateFormTitle),
+                content = GameEntry.Localization.GetStringOrNull(LocalizationDicKey.GotoUpdateForm.UpdateFormUpdateRes),
                 quit = () => { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
                 update = () => StartUpdateResources(null),
             };
